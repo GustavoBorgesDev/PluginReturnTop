@@ -18,6 +18,7 @@
             <div class="blocos bc9">I</div>
         </div>
 
+        <!-- Voce Deve usar essa estrutura de HTML para o plugin funcionar -->
         <div class="returnTop">
             <button id="botaoVoltar">Back</button>
         </div>
@@ -27,7 +28,7 @@
             // Plugin
             (function ($) {
 
-                // O plugin ja foi chamado
+                // Verifica se o plugin ja foi chamado
                 if (typeof $.fn.returnTop === "function") 
                     return;
                     
@@ -36,13 +37,10 @@
                     // Este This é o botao chamado no plugin, no caso #botaoVoltar
                     var $t = $(this);
 
-                    console.log('Entrei no Plugin!');
-
                     // Padrões
                     var defaults = {
-                        showsFrom: $('.bc6'),
-                        returnTime: 1000
-                        // showsFrom: $('.bc6'),
+                        showsFrom: $('.bc6'), // Voce pode colocar um Elemento (HTML) ou uma posicao de pixel da página (ex: 1900)
+                        returnTime: 1000 // Aqui voce pode definir o tempo da transicao do scroll
                     }
 
                     // Coloca as configurações dentro de um objeto
@@ -57,7 +55,7 @@
                     if (typeof setShowsFromTarget == "object") {
                         // Verifica se o elemento chamado existe na página
                         if (!setShowsFromTarget.length) {
-                            console.log('O elemento que voce chamou não existe na pagina.');
+                            console.log('O elemento que voce chamou não existe no HTML.');
                             return;
                         }
                         positionSet = setShowsFromTarget.offset().top;
