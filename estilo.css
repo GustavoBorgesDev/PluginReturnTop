@@ -1,0 +1,48 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.geral {
+    display: flex;
+    flex-direction: column;
+}
+
+.blocos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 80px;
+    height: 400px;
+    font-family: 'Arial', sans-serif;
+}
+
+.bc1 { background: #A2D9CE; }
+.bc2 { background: #F7DC6F; }
+.bc3 { background: #6C3483; }
+.bc4 { background: #B2BABB; }
+.bc5 { background: #2C3E50; }
+.bc6 { background: #935116; }
+.bc7 { background: #2874A6; }
+.bc8 { background: #45B39D; }
+.bc9 { background: #E84643; }
+
+
+.returnTop {
+
+    display: none; /*default*/
+
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+
+.returnTop button {
+    color: black;
+    font-size: 19px;
+    border-radius: 100%;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid black;
+}

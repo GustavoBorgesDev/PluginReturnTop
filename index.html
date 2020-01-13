@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="estilo.css">
+        <script src="jquery.js"></script>
+    </head>
+    <body>
+
+        <div class="geral">
+            <div class="blocos bc1">A</div>
+            <div class="blocos bc2">B</div>
+            <div class="blocos bc3">C</div>
+            <div class="blocos bc4">D</div>
+            <div class="blocos bc5">E</div>
+            <div class="blocos bc6">F</div>
+            <div class="blocos bc7">G</div>
+            <div class="blocos bc8">H</div>
+            <div class="blocos bc9">I</div>
+        </div>
+
+        <div class="returnTop">
+            <button id="botaoVoltar">Back</button>
+        </div>
+
+        <script>
+
+            // Plugin
+            (function ($) {
+
+                // O plugin ja foi chamado
+                if (typeof $.fn.returnTop === "function") 
+                    return;
+                    
+                // Escopo
+                $.fn.returnTop = function (options) {
+                    // Este This é o botao chamado no plugin, no caso #botaoVoltar
+                    var $t = $(this);
+
+                    console.log('Entrei no Plugin!');
+
+                    // Padrões
+                    var defaults = {
+                        showsFrom: $('.bc6'),
+                        returnTime: 1000
+                        // showsFrom: $('.bc6'),
+                    }
+
+                    // Coloca as configurações dentro de um objeto
+                    var settings = $.extend({}, defaults, options);
+
+                    // Seta as Opções do plugin em variaveis
+                    var setShowsFromTarget = settings.showsFrom;
+                    var setReturnTime = settings.returnTime;
+
+                    // Verifica se o Elemento Alvo é um HTML ou uma posicao Especificada
+                    var positionSet;
+                    if (typeof setShowsFromTarget == "object") {
+                        // Verifica se o elemento chamado existe na página
+                        if (!setShowsFromTarget.length) {
+                            console.log('O elemento que voce chamou não existe na pagina.');
+                            return;
+                        }
+                        positionSet = setShowsFromTarget.offset().top;
+                    } else if (typeof setShowsFromTarget == "number") {
+                        positionSet = setShowsFromTarget;
+                    }
+                    else if (typeof setShowsFromTarget == "string" || typeof setShowsFromTarget == undefined) {
+                        console.log('O elemento foi chamado de forma incorreta, tipo: ' + typeof setShowsFromTarget);
+                        return;
+                    }
+                    
+                    // Ativa o toggle do botao a partir do elemento especificado
+                    $(document).scroll(function () {
+                        var thisPosition = $(this).scrollTop();
+                        if (thisPosition >= positionSet) 
+                            $t.parent().show();
+                        else 
+                            $t.parent().hide();
+                    });
+                    
+                    // Faz voltar ao topo
+                    $t.click(function () {
+                        $('html, body').animate({
+                            scrollTop: 0
+                        }, setReturnTime);
+                    });
+
+                }
+                return this;
+            })(jQuery);
+        
+            $('#botaoVoltar').returnTop();
+
+        </script>
+
+    </body>
+</html>
